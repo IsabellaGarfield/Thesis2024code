@@ -58,10 +58,10 @@ fig.1 <- ggplot() +
   geom_density(data = null_df, aes(x = Distance, fill = "Null Distribution"), alpha = 0.5) +
   geom_vline(xintercept = as.numeric(observed_mean_dist), 
              linewidth = 0.5, color = "black", linetype = "dashed", show.legend = TRUE) + #adds vertical line depicting mean value of observed data
-  geom_text(aes(x = 340, label="Observed Mean = 395m", y=0.007), colour="orange3", angle=90, text= element_text(size = 9)) + #adds vline annotation
+  geom_text(aes(x = 340, label = "Observed Mean = 395m", y = 0.007), colour = "orange3", angle = 90, text = element_text(size = 9)) + #adds vline annotation
   geom_vline(xintercept = as.numeric(null_df_mean),
              linewidth = 0.5, color = "black", linetype = "dashed", show.legend = T) +
-  geom_text(aes(x=525, label = "Null mean = 645m", y=0.007), colour = "blue3", angle = 90, text = element_text(size = 9)) +
+  geom_text(aes(x = 525, label = "Null mean = 645m", y = 0.007), colour = "blue3", angle = 90, text = element_text(size = 9)) +
   labs(x = "Distance (Meters)", y = "Density", title = "Distance between natal and pupping sites") + #x, y axis titles and figure title
   theme_classic() +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 0.012)) + #sets limits for y axis
@@ -128,7 +128,7 @@ fig.3 = ggplot() +
   theme(legend.position = c(.8,.8)) + # Moves the legend to the bottom of the plot
   geom_vline(xintercept = as.numeric(firstpup.observed_mean_dist), 
              linewidth = 1, color = "black", linetype = "dashed", show.legend = TRUE) + #adds vertical line depicting mean value of observed data
-  geom_text(aes(x=460.69, label="Observed Mean = 490m", y=0.004), colour="black", angle=90, text=element_text(size=9)) #adds vline annotation
+  geom_text(aes(x = 460.69, label = "Observed Mean = 490m", y = 0.004), colour = "black", angle = 90, text = element_text(size = 9)) #adds vline annotation
 
 fig.3
 
@@ -187,13 +187,13 @@ saveRDS(pup_spatialmap_df, "output/pup_spatialmap_df.RDS")
 #----Fig. 4: map plot for natal (using mom_spatialmap_df) -------
 
 # make the map plot
-fig.4 <- ggplot(data=mom_spatialmap_df) + 
+fig.4 <- ggplot(data = mom_spatialmap_df) + 
   # pch is the point type, a hollow fillable circle
-  geom_point(aes(x= long, y= Lat, fill = n, size = n, ylim = c()), pch=21) + 
+  geom_point(aes(x = long, y = Lat, fill = n, size = n, ylim = c()), pch = 21) + 
   #scale_fill_distiller(bquote(~bold("Legend Title \n(Change Me)")), # the \n splits the label into two lines
   #                     palette = "RdYlBu") + # this is a standard color palette for heat maps
   scale_size_continuous(range = c(0, 15)) +
-  scale_fill_distiller(direction = -1, palette="RdYlBu") +
+  scale_fill_distiller(direction = -1, palette = "RdYlBu") +
   guides(fill = guide_legend(), size = guide_legend()) +
   theme_classic() + # this has to go before other theme calls otherwise it over rides them
   theme(legend.position = c(0.85, 0.35), legend.box.background = element_rect(color = "black", linewidth = .5)) + # adjust the legend position and other things like axis text size in this
@@ -204,26 +204,26 @@ fig.4 <- ggplot(data=mom_spatialmap_df) +
   annotate("rect", xmin = 4107550, xmax = 4109000, ymin = 558935, ymax = 558600, alpha = 0.13, fill = "aquamarine4") +
   annotate("rect", xmin = 4107550, xmax = 4109000, ymin = 559520, ymax = 558935, alpha = 0.13, fill = "darkorange3") +
   annotate("rect", xmin = 4107550, xmax = 4109000, ymin = 560200, ymax = 559520, alpha = 0.13, fill = "gold3") +
-  geom_text(aes(x=4107500, label="Northern", y=558750), colour="black", angle=90) +
-  geom_text(aes(x=4107500, label="Central", y=559200), colour="black", angle=90) +
-  geom_text(aes(x=4107500, label="Southern", y=559820), colour="black", angle=90) +
-  geom_text(aes(x=4107723, label="BBS", y=559430), colour="black", angle=0) +
-  geom_text(aes(x=4108020, label="BBN", y=559010), colour="black", angle=0) +
-  geom_text(aes(x=4108120, label="NP", y=558800), colour="black", angle=0) +
-  geom_label(aes(x=4108500, label="Mainland", y=559600), colour="black", angle=0) 
+  geom_text(aes(x = 4107500, label = "Northern", y = 558750), colour = "black", angle = 90) +
+  geom_text(aes(x = 4107500, label = "Central", y = 559200), colour = "black", angle = 90) +
+  geom_text(aes(x = 4107500, label = "Southern", y = 559820), colour = "black", angle = 90) +
+  geom_text(aes(x = 4107723, label = "BBS", y = 559430), colour = "black", angle = 0) +
+  geom_text(aes(x = 4108020, label = "BBN", y = 559010), colour = "black", angle = 0) +
+  geom_text(aes(x = 4108120, label = "NP", y = 558800), colour = "black", angle = 0) +
+  geom_label(aes(x = 4108500, label = "Mainland", y = 559600), colour = "black", angle = 0) 
   
 
 fig.4
 ggsave("figs/fig_4.png", plot = fig.4, width = 160, height = 120, units = "mm", dpi = 450)
 
 #Fig. 5: map plot for pupping (using pup_spatialmap_df) -------
-fig.5 <- ggplot(data=pup_spatialmap_df) + 
+fig.5 <- ggplot(data = pup_spatialmap_df) + 
   # pch is the point type, a hollow fillable circle
-  geom_point(aes(x= long, y= Lat, fill = n, size = n), pch=21) + 
+  geom_point(aes(x = long, y = Lat, fill = n, size = n), pch=21) + 
   #scale_fill_distiller(bquote(~bold("Legend Title \n(Change Me)")), # the \n splits the label into two lines
   #                     palette = "RdYlBu") + # this is a standard color palette for heat maps
   scale_size_continuous(range = c(0, 15)) + #should this be out of 15 or 16?
-  scale_fill_distiller(direction = -1, palette="RdYlBu") +
+  scale_fill_distiller(direction = -1, palette = "RdYlBu") +
   guides(fill = guide_legend(), size = guide_legend()) +
   theme_classic() +# this has to go before other theme calls otherwise it over rides them
   theme(legend.position = c(0.85, 0.35), legend.box.background = element_rect(color = "black", linewidth = .5)) + # adjust the legend position and other things like axis text size in this
@@ -234,12 +234,12 @@ fig.5 <- ggplot(data=pup_spatialmap_df) +
   annotate("rect", xmin = 4107550, xmax = 4109000, ymin = 558935, ymax = 558600, alpha = 0.13, fill = "aquamarine4") +
   annotate("rect", xmin = 4107550, xmax = 4109000, ymin = 559520, ymax = 558935, alpha = 0.13, fill = "darkorange3") +
   annotate("rect", xmin = 4107550, xmax = 4109000, ymin = 560200, ymax = 559520, alpha = 0.13, fill = "gold3") +
-  geom_text(aes(x=4107500, label="Northern", y=558750), colour="black", angle=90) +
-  geom_text(aes(x=4107500, label="Central", y=559200), colour="black", angle=90) +
-  geom_text(aes(x=4107500, label="Southern", y=559820), colour="black", angle=90) +
-  geom_text(aes(x=4107855, label="TSB", y=559870), colour="black", angle=0) +
-  geom_label(aes(x=4108500, label="Mainland", y=559600), colour="black", angle=0) 
-
+  geom_text(aes(x = 4107500, label = "Northern", y = 558750), colour = "black", angle = 90) +
+  geom_text(aes(x = 4107500, label = "Central", y = 559200), colour = "black", angle = 90) +
+  geom_text(aes(x = 4107500, label = "Southern", y = 559820), colour = "black", angle = 90) +
+  geom_text(aes(x = 4107855, label = "TSB", y = 559870), colour = "black", angle = 0) +
+  geom_label(aes(x = 4108500, label = "Mainland", y= 559600), colour = "black", angle = 0) 
+ 
 fig.5 #figure out how to allign x axis values with fig. 4
 ggsave("figs/fig_5.png", plot = fig.5, width = 160, height = 120, units = "mm", dpi = 450)
 
