@@ -37,6 +37,7 @@ null_mean_dist <- replicate(n = 10000, rand_mean_dist(pupmom_dist$pup_area,
                                                      pupmom_dist$mom_area,
                                                      beach_distance))#Shuffles mom area and pup area distances so randomized values are truly randomized
 null_df <- data.frame(Distance = null_mean_dist)
+null_df_mean <- mean(null_df$Distance)
 
 Fig1_pupmom_dist_nounits <- Fig1_pupmom_dist %>%
   mutate(Distances_without_units = drop_units(Distance)) #Fig1_pupmom_dist has assigned unit for each value, while most other dataframes (such as null_df) only have values with unassigned units. In order to overlay both dataframes in the same graph without getting an error, units needed to be dropped. Fig1_pupmom_dist_nounits gives you the same distance values without units. Error solved!
@@ -55,10 +56,12 @@ fig.1 <- ggplot() +
                orientation = NA,
                show.legend = T) +
   geom_density(data = null_df, aes(x = Distance, fill = "Null Distribution"), alpha = 0.5) +
-  #expand_limits(x = c(0, 2000)) +
   geom_vline(xintercept = as.numeric(observed_mean_dist), 
-             linewidth = 1, color = "black", linetype = "dashed", show.legend = TRUE) + #adds vertical line depicting mean value of observed data
-  geom_text(aes(x=340, label="Observed Mean = 395m", y=0.007), colour="black", angle=90, text=element_text(size=9)) + #adds vline annotation
+             linewidth = 0.5, color = "black", linetype = "dashed", show.legend = TRUE) + #adds vertical line depicting mean value of observed data
+  geom_text(aes(x = 340, label="Observed Mean = 395m", y=0.007), colour="orange3", angle=90, text= element_text(size = 9)) + #adds vline annotation
+  geom_vline(xintercept = as.numeric(null_df_mean),
+             linewidth = 0.5, color = "black", linetype = "dashed", show.legend = T) +
+  geom_text(aes(x=525, label = "Null mean = 645m", y=0.007), colour = "blue3", angle = 90, text = element_text(size = 9)) +
   labs(x = "Distance (Meters)", y = "Density", title = "Distance between natal and pupping sites") + #x, y axis titles and figure title
   theme_classic() +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 0.012)) + #sets limits for y axis
