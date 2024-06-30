@@ -61,7 +61,7 @@ fig.1 <- ggplot() +
   geom_text(aes(x = 340, label = "Observed Mean = 395m", y = 0.007), colour = "orange3", angle = 90, text = element_text(size = 9)) + #adds vline annotation
   geom_vline(xintercept = as.numeric(null_df_mean),
              linewidth = 0.5, color = "black", linetype = "dashed", show.legend = T) +
-  geom_text(aes(x = 525, label = "Null mean = 645m", y = 0.007), colour = "blue3", angle = 90, text = element_text(size = 9)) +
+  geom_text(aes(x = 525, label = "Null mean = 613m", y = 0.007), colour = "blue3", angle = 90, text = element_text(size = 9)) +
   labs(x = "Distance (Meters)", y = "Density", title = "Distance between natal and pupping sites") + #x, y axis titles and figure title
   theme_classic() +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 0.012)) + #sets limits for y axis
