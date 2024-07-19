@@ -3,7 +3,8 @@ library(tidyverse)
 
 # Read in the data
 resights <- read.csv("data/belladatapull2013_09_15.csv")
-#resights <- read_csv("data/belladatapull2013_09_15.csv")
+#location will differ, but read in the datapull data sheet
+
 
 # This function works on one animal (the group) and finds the pup site based on
 # the most frequent area (location) and earliest date (observed)
