@@ -57,12 +57,12 @@ fig.1 <- ggplot() +
                show.legend = T) +
   geom_density(data = null_df, aes(x = Distance, fill = "Null Distribution"), alpha = 0.5) +
   geom_vline(xintercept = as.numeric(observed_mean_dist), 
-             linewidth = 0.5, color = "black", linetype = "dashed", show.legend = TRUE) + #adds vertical line depicting mean value of observed data
-  geom_text(aes(x = 340, label = "Observed Mean = 395m", y = 0.007), colour = "orange3", angle = 90, text = element_text(size = 9)) + #adds vline annotation
+             linewidth = 0.5, color = "orange3", linetype = "dashed", show.legend = TRUE) + #adds vertical line depicting mean value of observed data
+  geom_text(aes(x = 320, label="395m", y=0.011), colour="orange3", angle=0, text= element_text(size = 9)) + #adds vline annotation
   geom_vline(xintercept = as.numeric(null_df_mean),
-             linewidth = 0.5, color = "black", linetype = "dashed", show.legend = T) +
-  geom_text(aes(x = 525, label = "Null mean = 613m", y = 0.007), colour = "blue3", angle = 90, text = element_text(size = 9)) +
-  labs(x = "Distance (Meters)", y = "Density", title = "Distance between natal and pupping sites") + #x, y axis titles and figure title
+             linewidth = 0.5, color = "blue3", linetype = "dashed", show.legend = T) +
+  geom_text(aes(x=700, label = "613m", y=0.011), colour = "blue3", angle = 0, text = element_text(size = 9)) +
+  labs(x = "Distance (Meters)", y = "Density", title = "Distance between natal and pupping sites") +#x, y axis titles and figure title
   theme_classic() +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 0.012)) + #sets limits for y axis
   scale_x_continuous(expand = c(0, 0), limits = c(0, 2050)) + #this line is cutting off the 2000
@@ -126,9 +126,12 @@ fig.3 = ggplot() +
   guides(fill = guide_legend(title = "Distribution Type:"), 
          linetype = guide_legend(title = "Mean Distance")) +
   theme(legend.position = c(.8,.8)) + # Moves the legend to the bottom of the plot
+  geom_vline(xintercept = as.numeric(firstpup.null_mean), 
+             linewidth = 0.5, color = "blue", linetype = "dashed", show.legend = TRUE) + 
+  geom_text(aes(x = 720, label="645m", y = 0.006), colour="blue3", angle=0, text=element_text(size = 9)) +
   geom_vline(xintercept = as.numeric(firstpup.observed_mean_dist), 
-             linewidth = 1, color = "black", linetype = "dashed", show.legend = TRUE) + #adds vertical line depicting mean value of observed data
-  geom_text(aes(x = 460.69, label = "Observed Mean = 490m", y = 0.004), colour = "black", angle = 90, text = element_text(size = 9)) #adds vline annotation
+             linewidth = 0.5, color = "seagreen", linetype = "dashed", show.legend = TRUE) + #adds vertical line depicting mean value of observed data
+  geom_text(aes(x = 435, label="490m", y = 0.006), colour="seagreen", angle=0, text=element_text(size = 9)) #adds vline annotation
 
 fig.3
 
