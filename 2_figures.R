@@ -255,7 +255,7 @@ Fig.4_5.vert <- plot_grid(fig.4, fig.5, ncol = 1, align = 'v', labels = "AUTO")
 Fig.4_5.vert
 ggsave("figs/fig4_5.vert.png", plot = Fig.4_5.vert, width = 200, height = 240, units = "mm", dpi = 450)
 
-#Google earth images
+####Arranging Google earth images
 #importig Google earth images
 ano2021 <- readPNG("figs/2021ano.png")
 ano2018 <- readPNG("figs/2018Ano.png")
@@ -286,4 +286,41 @@ grid.draw(Anogullychange)
 dev.off()
 
 
+#####Arrange distribution figs with KS test images
+Nataldistpng <- readPNG("figs/fig_1.png")
+NatalKSpng <- readPNG("figs/KStest.png")
+firstpupdistpng <- readPNG("figs/fig_3.png")
+firstpupKSpng <- readPNG("figs/Firstpup.KStest.png")
+
+#turning PNG images into graphical objects
+gnataldistpng <- rasterGrob(Nataldistpng, interpolate=TRUE)
+gnatalKSpng <- rasterGrob(NatalKSpng, interpolate=TRUE)
+gfirstpupdistpng <- rasterGrob(firstpupdistpng, interpolate=TRUE)
+gfirstpupKSpng <- rasterGrob(firstpupKSpng, interpolate=TRUE)
+
+#creating new labels
+labelA2 <- textGrob("A", x = unit(0.08, "npc"), y = unit(0.97, "npc"), just=c("left", "top"), gp=gpar(fontsize=50, fontface = "bold"))
+labelB2 <- textGrob("B", x = unit(0.08, "npc"), y = unit(0.97, "npc"), just=c("left", "top"), gp=gpar(fontsize=50, fontface = "bold"))
+
+#Assigning labels - labels are reused from line 275
+natal_labeled <- gTree(children=gList(gnataldistpng, labelA2))
+natalKS_labeled <- gTree(children=gList(gnatalKSpng, labelB2))
+
+firstpup_labeled <- gTree(children=gList(gfirstpupdistpng, labelA2))
+firstpupKS_labeled <- gTree(children=gList(gfirstpupKSpng, labelB2))
+
+#arranging
+#natal density plot with KS test
+Natalplotsarrange <- grid.arrange(natal_labeled, natalKS_labeled, ncol=2)
+
+png("Natalplotsarrange.png", width=3050, height=1000)
+grid.draw(Natalplotsarrange)
+dev.off()
+
+#firstpup density plot with KS test
+firstpupplotsarrange <- grid.arrange(firstpup_labeled, firstpupKS_labeled, ncol=2)
+
+png("firstpupplotsarrange.png", width=3050, height=1000)
+grid.draw(firstpupplotsarrange)
+dev.off()
 
