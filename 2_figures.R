@@ -251,3 +251,36 @@ ggsave("figs/fig4_5.png", plot = Fig.4_5, width = 350, height = 120, units = "mm
 Fig.4_5.vert <- plot_grid(fig.4, fig.5, ncol = 1, align = 'v', labels = "AUTO")
 Fig.4_5.vert
 ggsave("figs/fig4_5.vert.png", plot = Fig.4_5.vert, width = 200, height = 240, units = "mm", dpi = 450)
+
+#Google earth images
+#importig Google earth images
+ano2021 <- readPNG("figs/2021ano.png")
+ano2018 <- readPNG("figs/2018Ano.png")
+ano2023 <- readPNG("figs/2023Ano.png")
+
+#turning google earth images into graphical objects
+g2021 <- rasterGrob(ano2021, interpolate=TRUE)
+g2018 <- rasterGrob(ano2018, interpolate=TRUE)
+g2023 <- rasterGrob(ano2023, interpolate=TRUE)
+
+# Create labels
+labelA <- textGrob("A", x = unit(0.08, "npc"), y = unit(0.95, "npc"), just=c("left", "top"), gp=gpar(fontsize=50, fontface = "bold"))
+labelB <- textGrob("B", x = unit(0.08, "npc"), y = unit(0.95, "npc"), just=c("left", "top"), gp=gpar(fontsize=50, fontface = "bold"))
+labelC <- textGrob("C", x = unit(0.08, "npc"), y = unit(0.95, "npc"), just=c("left", "top"), gp=gpar(fontsize=50, fontface = "bold"))
+
+
+# Combine labels and images
+
+g2018_labeled <- gTree(children=gList(g2018, labelA))
+g2021_labeled <- gTree(children=gList(g2021, labelB))
+g2023_labeled <- gTree(children=gList(g2023, labelC))
+
+# Arrange the images in a grid
+Anogullychange <- grid.arrange(g2018_labeled, g2021_labeled, g2023_labeled, ncol=3)
+
+png("Anogullychange.png", width=2000, height=1000)
+grid.draw(Anogullychange)
+dev.off()
+
+
+
