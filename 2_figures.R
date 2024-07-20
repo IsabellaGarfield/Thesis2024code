@@ -58,10 +58,10 @@ fig.1 <- ggplot() +
   geom_density(data = null_df, aes(x = Distance, fill = "Null Distribution"), alpha = 0.5) +
   geom_vline(xintercept = as.numeric(observed_mean_dist), 
              linewidth = 0.5, color = "orange3", linetype = "dashed", show.legend = TRUE) + #adds vertical line depicting mean value of observed data
-  geom_text(aes(x = 320, label="395m", y=0.011), colour="orange3", angle=0, text= element_text(size = 9)) + #adds vline annotation
+  geom_text(aes(x = 300, label="395m", y=0.011), colour="orange3", angle=0, size = 5) + #adds vline annotation
   geom_vline(xintercept = as.numeric(null_df_mean),
              linewidth = 0.5, color = "blue3", linetype = "dashed", show.legend = T) +
-  geom_text(aes(x=700, label = "613m", y=0.011), colour = "blue3", angle = 0, text = element_text(size = 9)) +
+  geom_text(aes(x=720, label = "613m", y=0.011), colour = "blue3", angle = 0, size = 5) +
   labs(x = "Distance (Meters)", y = "Density", title = "Distance between natal and pupping sites") +#x, y axis titles and figure title
   theme_classic() +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 0.012)) + #sets limits for y axis
@@ -69,7 +69,9 @@ fig.1 <- ggplot() +
   scale_fill_manual(values = c("blue", "orange")) + #organized for legend
   guides(fill = guide_legend(title = "Distribution Type:"), 
          linetype = guide_legend(title = "Mean Distance")) +
-  theme(legend.position = c(.8,.8))  # Moves the legend to the bottom of the plot
+  theme(legend.position = c(.8,.8)) +  # Moves the legend to the bottom of the plot 
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 20)) + #centers/bolds title
+  theme(axis.title = element_text(size = 15))
 
 fig.1
 max(Fig1_pupmom_dist_nounits$Distance)
