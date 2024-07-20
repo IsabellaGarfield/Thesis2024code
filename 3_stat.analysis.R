@@ -73,12 +73,12 @@ dev.off()
 # Calculate quartiles and IQR
 Q1.p <- quantile(pup_spatialmap_df$n, 0.25)
 Q3.p <- quantile(pup_spatialmap_df$n, 0.75)
-IQR.p <- Q3 - Q1
+IQR.p <- Q3.p - Q1.p
 Q1.p
 Q3.p
 IQR.p
 # Identify outliers
-outliers.p <- pup_spatialmap_df$n[pup_spatialmap_df$n < Q1 - 1.5 * IQR | pup_spatialmap_df$n > Q3 + 1.5 * IQR]
+outliers.p <- pup_spatialmap_df$n[pup_spatialmap_df$n < Q1.p - 1.5 * IQR.p | pup_spatialmap_df$n > Q3.p + 1.5 * IQR.p]
 outliers.p
 #outliers: 16 = TSB
 
@@ -86,13 +86,13 @@ outliers.p
 # Calculate quartiles and IQR
 Q1.m <- quantile(mom_spatialmap_df$n, 0.25)
 Q3.m <- quantile(mom_spatialmap_df$n, 0.75)
-IQR.m <- Q3 - Q1
+IQR.m <- Q3.m - Q1.m
 Q1.m
 Q3.m
 IQR.m
 # Identify outliers
-outliers.p <- mom_spatialmap_df$n[mom_spatialmap_df$n < Q1 - 1.5 * IQR | mom_spatialmap_df$n > Q3 + 1.5 * IQR]
-outliers.p
+outliers.m <- mom_spatialmap_df$n[mom_spatialmap_df$n < Q1.m - 1.5 * IQR.m | mom_spatialmap_df$n > Q3.m + 1.5 * IQR.m]
+outliers.m
 #outliers: 15 = BBN, 15 = BBS, 12 = NP
 
 
