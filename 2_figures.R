@@ -234,7 +234,14 @@ fig.4 <- ggplot(data = mom_spatialmap_df) +
   geom_text(aes(x = 4107723, label = "BBS", y = 559430), colour = "black", angle = 0) +
   geom_text(aes(x = 4108020, label = "BBN", y = 559010), colour = "black", angle = 0) +
   geom_text(aes(x = 4108120, label = "NP", y = 558800), colour = "black", angle = 0) +
-  geom_label(aes(x = 4108500, label = "Mainland", y = 559600), colour = "black", angle = 0) 
+  geom_label(aes(x = 4108500, label = "Mainland", y = 559600), colour = "black", angle = 0) +
+  theme(
+    plot.title = element_text(hjust = 0, vjust = 9, face = "bold", size = 15), #centers/bolds title, moves away from fig (Vjust)
+    plot.margin = margin(t = 40, l = 25, b = 30, r = 20), #expands white space around the figure so axis titles don't get cut off when I move them away from the fig a bit
+    axis.title.x = element_text(vjust = -3, size = 15), #increases axis font size, moves away from fig
+    axis.title.y = element_text(vjust = 5, size = 15), #increases axis font size, moves away from fig
+    axis.text.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15)) 
   
 
 fig.4
@@ -262,7 +269,14 @@ fig.5 <- ggplot(data = pup_spatialmap_df) +
   geom_text(aes(x = 4107500, label = "Central", y = 559200), colour = "black", angle = 90) +
   geom_text(aes(x = 4107500, label = "Southern", y = 559820), colour = "black", angle = 90) +
   geom_text(aes(x = 4107855, label = "TSB", y = 559870), colour = "black", angle = 0) +
-  geom_label(aes(x = 4108500, label = "Mainland", y= 559600), colour = "black", angle = 0) 
+  geom_label(aes(x = 4108500, label = "Mainland", y= 559600), colour = "black", angle = 0) +
+  theme(
+    plot.title = element_text(hjust = 0, vjust = 9, face = "bold", size = 15), #centers/bolds title, moves away from fig (Vjust)
+    plot.margin = margin(t = 40, l = 25, b = 30, r = 20), #expands white space around the figure so axis titles don't get cut off when I move them away from the fig a bit
+    axis.title.x = element_text(vjust = -3, size = 15), #increases axis font size, moves away from fig
+    axis.title.y = element_text(vjust = 5, size = 15), #increases axis font size, moves away from fig
+    axis.text.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15)) 
  
 fig.5 #figure out how to allign x axis values with fig. 4
 ggsave("figs/fig_5.png", plot = fig.5, width = 160, height = 120, units = "mm", dpi = 450)
