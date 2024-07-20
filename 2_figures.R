@@ -50,6 +50,7 @@ firstpup.null_mean_dist <- replicate(n = 10000, rand_mean_dist(first.pup$pup_are
 first.pup_null_df <- data.frame(Distance = firstpup.null_mean_dist)
 #-------Fig 1: combining actual vs. bootstrapped distance of natal vs. pupping sites#####
 
+
 fig.1 <- ggplot() +
   geom_density(data = Fig1_pupmom_dist_nounits, aes(x = Distances_without_units, fill = "Observed Distances "), alpha = 0.5,
                na.rm = FALSE,
@@ -58,10 +59,10 @@ fig.1 <- ggplot() +
   geom_density(data = null_df, aes(x = Distance, fill = "Null Distribution"), alpha = 0.5) +
   geom_vline(xintercept = as.numeric(observed_mean_dist), 
              linewidth = 0.5, color = "orange3", linetype = "dashed", show.legend = TRUE) + #adds vertical line depicting mean value of observed data
-  geom_text(aes(x = 300, label="395m", y=0.011), colour="orange3", angle=0, size = 5) + #adds vline annotation
+  geom_text(aes(x = 290, label="395m", y=0.011), colour="orange3", angle=0, size = 5) + #adds vline annotation
   geom_vline(xintercept = as.numeric(null_df_mean),
              linewidth = 0.5, color = "blue3", linetype = "dashed", show.legend = T) +
-  geom_text(aes(x=720, label = "613m", y=0.011), colour = "blue3", angle = 0, size = 5) +
+  geom_text(aes(x = 730, label = "613m", y=0.011), colour = "blue3", angle = 0, size = 5) +
   labs(x = "Distance (Meters)", y = "Density", title = "Distance between natal and pupping sites") +#x, y axis titles and figure title
   theme_classic() +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 0.012)) + #sets limits for y axis
@@ -70,8 +71,13 @@ fig.1 <- ggplot() +
   guides(fill = guide_legend(title = "Distribution Type:"), 
          linetype = guide_legend(title = "Mean Distance")) +
   theme(legend.position = c(.8,.8)) +  # Moves the legend to the bottom of the plot 
-  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 20)) + #centers/bolds title
-  theme(axis.title = element_text(size = 15))
+  theme(
+      plot.title = element_text(hjust = 0, vjust = 13, face = "bold", size = 15), #centers/bolds title, moves away from fig (Vjust)
+      plot.margin = margin(t = 40, l = 25, b = 30, r = 20), #expands white space around the figure so axis titles don't get cut off when I move them away from the fig a bit
+      axis.title.x = element_text(vjust = -5, size = 15), #increases axis font size, moves away from fig
+      axis.title.y = element_text(vjust = 5, size = 15), #increases axis font size, moves away from fig
+      axis.text.x = element_text(size = 15),
+      axis.text.y = element_text(size = 15)) 
 
 fig.1
 max(Fig1_pupmom_dist_nounits$Distance)
@@ -100,7 +106,14 @@ fig.2 = age_dist %>%
   geom_text(aes(x=6, label="n = 12", y=2080), colour="gray50", angle=0) +
   geom_text(aes(x=7, label="n = 6", y=2080), colour="gray50", angle=0) +
   geom_text(aes(x=8, label="n = 3", y=2080), colour="gray50", angle=0) +
-  geom_text(aes(x=9, label="n = 2", y=2080), colour="black", angle=0) 
+  geom_text(aes(x=9, label="n = 2", y=2080), colour="black", angle=0) +
+  theme(
+    plot.title = element_text(hjust = 0, vjust = 13, face = "bold", size = 15), #centers/bolds title, moves away from fig (Vjust)
+    plot.margin = margin(t = 40, l = 25, b = 30, r = 20), #expands white space around the figure so axis titles don't get cut off when I move them away from the fig a bit
+    axis.title.x = element_text(vjust = -5, size = 15), #increases axis font size, moves away from fig
+    axis.title.y = element_text(vjust = 5, size = 15), #increases axis font size, moves away from fig
+    axis.text.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15)) 
 
 
 fig.2
@@ -133,12 +146,20 @@ fig.3 = ggplot() +
   geom_text(aes(x = 720, label="645m", y = 0.006), colour="blue3", angle=0, text=element_text(size = 9)) +
   geom_vline(xintercept = as.numeric(firstpup.observed_mean_dist), 
              linewidth = 0.5, color = "seagreen", linetype = "dashed", show.legend = TRUE) + #adds vertical line depicting mean value of observed data
-  geom_text(aes(x = 435, label="490m", y = 0.006), colour="seagreen", angle=0, text=element_text(size = 9)) #adds vline annotation
+  geom_text(aes(x = 435, label="490m", y = 0.006), colour="seagreen", angle=0, text=element_text(size = 9)) + #adds vline annotation
+  theme(
+    plot.title = element_text(hjust = 0, vjust = 13, face = "bold", size = 15), #centers/bolds title, moves away from fig (Vjust)
+    plot.margin = margin(t = 40, l = 25, b = 30, r = 20), #expands white space around the figure so axis titles don't get cut off when I move them away from the fig a bit
+    axis.title.x = element_text(vjust = -5, size = 15), #increases axis font size, moves away from fig
+    axis.title.y = element_text(vjust = 5, size = 15), #increases axis font size, moves away from fig
+    axis.text.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15)) 
+
 
 fig.3
+ggsave("figs/fig_3.png", plot = fig.3, width = 220, height = 120, units = "mm", dpi = 450)
 
 #mode for fig 3?
-
 d <- density(first.pup$Distance)
 
 mode.fig3 <- function(d){
@@ -153,8 +174,6 @@ mode.fig3(d)
 max(first.pup$Distance) #max value
 mean(first.pup$Distance) #mean value
 mean(firstpup.null_mean_dist)
-
-ggsave("figs/fig_3.png", plot = fig.3, width = 220, height = 120, units = "mm", dpi = 450)
 
 #------Maps: Figure 4 and 5 --------
 #'points' has lat, long for each beach name
