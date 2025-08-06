@@ -1,9 +1,8 @@
-
 library(sf)
 library(tidyverse)
 # do not need - setwd('/Users/bellagarfield/Desktop/THESIS2024/Preliminary R tests/')
 #points <- read.csv("data/SealbeachesQGIS - Sheet2.csv")
-points <- na.omit(read_csv("data/ SealbeachesQGIS - Sheet2.csv"))
+points <- na.omit(read_csv("data/SealbeachesQGIS - Sheet2.csv"))
 later_pups <- readRDS("output/later_pups.rds") %>% 
   filter(pup_area != "APBN",#no location for location APBN, so we need to filter out these entries for both data frames 'later_pups' and 'pups_moms_df'
          first_pup != "APBN") 
@@ -39,3 +38,4 @@ firstpup_dist.filtered <- firstpup_dist %>%
 
 saveRDS(firstpup_dist.filtered, "output/firstpup_dist.filtered.RDS")
 write.csv(firstpup_dist.filtered, "output/firstpup_dist.filtered.csv")
+

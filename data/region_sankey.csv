@@ -1,0 +1,10 @@
+mom_region,pup_region,n
+northern_mom,southern_pup,8
+northern_mom,central_pup,5
+northern_mom,northern_pup,19
+central_mom,southern_pup,13
+central_mom,northern_pup,9
+central_mom,central_pup,7
+southern_mom,southern_pup,50
+southern_mom,central_pup,3
+southern_mom,northern_pup,9
