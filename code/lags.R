@@ -63,7 +63,7 @@ model_lags_quantile <- rq(Distance ~ log(lag),
 summary(model_lags_quantile, se = "boot")
 quant_preds <- tibble(lag = 1:6) %>% 
   mutate(Distance = predict(model_lags_quantile, newdata = .))
-ggplot(lags_distances, aes(factor(lag), Distance)) +
+lag_fig <- ggplot(lags_distances, aes(factor(lag), Distance)) +
   geom_boxplot() +
   geom_line(aes(group = 1),
             data = quant_preds, 
@@ -73,5 +73,10 @@ ggplot(lags_distances, aes(factor(lag), Distance)) +
              color = "firebrick",
              size = 2) +
   theme_bw()
+
+lag_fig
+
+
+ggsave("figs/Lags_median.png", plot = lag_fig, width = 220, height = 120, units = "mm", dpi = 700)
 
 ## This model suggests the median distance does increase with the lag. You don't have a significant p-value (0.063), so you can't say it's a significant relationship. But you can present the results and that will satisfy the reviewer.
